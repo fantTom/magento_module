@@ -5,7 +5,7 @@
                 <item name="myrouter" xsi:type="array">
                     <item name="class" xsi:type="string">Ravkovich\Feedback\Controller\MyRouter</item>
                     <item name="disable" xsi:type="boolean">false</item>
-                    <item name="sortOrder" xsi:type="string">60</item>
+                    <item name="sortOrder" xsi:type="string">70</item>
                 </item>
             </argument>
         </arguments>
