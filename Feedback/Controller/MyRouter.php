@@ -24,8 +24,8 @@ class MyRouter implements \Magento\Framework\App\RouterInterface
     public function match(\Magento\Framework\App\RequestInterface $request)
     {
         $identifier = trim($request->getPathInfo(), '/');
-        $my_url = $this->scopeConfig->getValue('feedback/general/frontend_url', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-        if (strpos($identifier, $my_url) !== false) {
+        $myUrl = $this->scopeConfig->getValue('feedback/general/frontend_url', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+        if (strcmp($identifier,$myUrl) == false) {
             $request->setModuleName('myrouter')-> //module name
             setControllerName('index')-> //controller name
             setActionName('index'); //action name

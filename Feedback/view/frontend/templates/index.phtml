@@ -1,6 +1,19 @@
-<form>
-    <div class="form-group">
-        <label for="exampleFormControlTextarea1">Поле ввода:</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+<?php
+/** @var \Magento\Framework\View\Element\Template $block */
+?>
+<form id="sku-form" method="post" action="<?= $block->getUrl('*/Cart/AddProductToCart') ?>">
+
+    <div class="text_scu" style="width: 70%;  float: left;">
+        <span class="label">Поле ввода SKU-кода:</span>
+        <input type="text" id="sku" name="sku" value="" />
     </div>
+    <div class="text_caut" style="width: 25%;  float: left; padding-left: 5%">
+        <span class="label">Поле ввода количества единиц:</span>
+        <input type="text" id="qty" name="qty" value="" />
+    </div>
+    <button type="submit" class="btn_add" style="float: right; margin: 20px 10px 20px 0;" >Добавить</button>
+</form>
+<form enctype="multipart/form-data" method="post">
+    <input type="file" name="download_file" style="margin: 20px 10px 20px 0;">
+    <button type="submit" class="btn_download" style="margin: 20px 10px 20px 0;" >Добавить из файла</button>
 </form>
