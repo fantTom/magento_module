@@ -21,8 +21,8 @@ class Autocomplete extends Action
 
     public function execute()
     {
-
-        $this->messageManager->addSuccessMessage(__('Autocomplete!'));
-        return $this->_redirect($this->_redirect->getRefererUrl());
+        $resultJson = $this->resultFactory->create(ResultFactory::TYPE_JSON);
+        $resultJson->setData($this->prductStore->findBySKU($this->getRequest()->getParam('SKU')));
+        return $resultJson;
     }
 }

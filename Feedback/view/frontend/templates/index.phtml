@@ -29,25 +29,23 @@
 
 
 <script type="text/javascript">
-
-    $(document).ready(function($) {
-        $('#sku-form')
-            .keyup(function () {
-                var str1 = $(this).serialize();
+    require(['jquery'],function($){
+        $(document).ready(function(){
+            $('#sku').('click', function () {
                 $.ajax({
-                    type: "POST",
                     url: '*/prod/autocomplete',
-                    data: str1,
-
-                    success: function (data) {
-                       //$('#success_message').fadeIn().html(data);
-                       // $('#form-for-login').style.display = 'none';
+                    data:   $('#sku-form').serialize(),
+                    beforeSend: function () {
+                        console.log('ajax is working');
                     },
+                    success: function (response) {
+                        var array = JSON.parse(response);
+                        console.log(array);
+                        //$('.example').html(array);
+                    }
                 });
-            });
-
+            })
+        });
     });
-
-
 
 </script>
