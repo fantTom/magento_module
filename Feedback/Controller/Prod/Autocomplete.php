@@ -3,26 +3,28 @@
 
 namespace Ravkovich\Feedback\Controller\Prod;
 
+use Magento\Framework\Controller\ResultFactory;
 
-use Magento\Framework\App\Action\Action;
-use Magento\Framework\App\Action\Context;
-
-class Autocomplete extends Action
+class Autocomplete extends \Magento\Framework\App\Action\Action
 {
+    /**
+     * @var \Ravkovich\Feedback\Model\ProductStore
+     */
+    protected $productStore;
 
     public function __construct(
-        Context $context,
+        \Magento\Framework\App\Action\Context $context,
         \Ravkovich\Feedback\Model\ProductStore $productStore
     ) {
-        parent::__construct($context);
-
-        $this->prductStore = $productStore;
+        $this->productStore = $productStore;
+        return parent::__construct($context);
     }
 
     public function execute()
     {
         $resultJson = $this->resultFactory->create(ResultFactory::TYPE_JSON);
-        $resultJson->setData($this->prductStore->findBySKU($this->getRequest()->getParam('SKU')));
+        $resultJson->setData($this->productStore->getSkuField($this->getRequest()->getParam('sku')));
         return $resultJson;
     }
+
 }

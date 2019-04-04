@@ -1,7 +1,13 @@
-<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd" layout="2columns-left">
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <script src="Ravkovich_Feedback::js/autocomplete.js"></script>
+    </head>
     <body>
         <referenceContainer name="content">
-            <block class="Magento\Framework\View\Element\Template" name="index" template="Ravkovich_Feedback::index.phtml" cacheable="false"/>
+            <block class="Magento\Framework\View\Element\Template" name="index"
+                   template="Ravkovich_Feedback::index.phtml"/>
         </referenceContainer>
     </body>
 </page>

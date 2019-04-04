@@ -1,51 +1,21 @@
 <?php
 /** @var \Magento\Framework\View\Element\Template $block */
 ?>
-<form id="sku-form" method="post" action="<?= $block->getUrl('*/cart/addproducttocart') ?>">
+<form id="sku-form" action="<?= $block->getUrl('*/cart/addproducttocart') ?>">
 
     <div class="text_scu" style="width: 70%;  float: left;">
         <span class="label">Поле ввода SKU-кода:</span>
-        <input type="text" id="sku" name="sku" value="" />
+        <input list="sku-list" type="text" id="sku" name="sku" autocomplete="no"/>
+        <datalist id="sku-list" name="sku-list"></datalist>
     </div>
     <div class="text_caut" style="width: 25%;  float: left; padding-left: 5%">
         <span class="label">Поле ввода количества единиц:</span>
-        <input type="text" id="qty" name="qty" value="" />
+        <input type="text" id="qty" name="qty" value=""/>
     </div>
-    <button type="submit" class="btn_add" style="float: right; margin: 20px 10px 20px 0;" >Добавить</button>
+    <button type="submit" class="btn_add" style="float: right; margin: 20px 10px 20px 0;">Добавить</button>
 </form>
-<form type="multipart/form-data" method="post">
+<!--<form type="multipart/form-data" method="post">
     <input type="file" name="download_file" style="margin: 20px 10px 20px 0;">
-    <button type="submit" class="btn_download" style="margin: 20px 10px 20px 0;" >Добавить из файла</button>
+    <button type="submit" class="btn_download" style="margin: 20px 10px 20px 0;">Добавить из файла</button>
 </form>
-
-
-<lable>Выберите любимого персонажа:
-<input list="character">
-    <datalist id="character">
-        <option value="Чебурашка">Name 1</option>
-        <option value="Крокодил Гена">Name 2</option>
-        <option value="Шапокляк">Name 3</option>
-    </datalist></lable>
-
-
-<script type="text/javascript">
-    require(['jquery'],function($){
-        $(document).ready(function(){
-            $('#sku').('click', function () {
-                $.ajax({
-                    url: '*/prod/autocomplete',
-                    data:   $('#sku-form').serialize(),
-                    beforeSend: function () {
-                        console.log('ajax is working');
-                    },
-                    success: function (response) {
-                        var array = JSON.parse(response);
-                        console.log(array);
-                        //$('.example').html(array);
-                    }
-                });
-            })
-        });
-    });
-
-</script>
+-->

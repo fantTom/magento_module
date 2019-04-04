@@ -28,21 +28,20 @@ class ProductStore extends \Magento\Framework\Model\AbstractModel
     }
 
 
-    public function getSkuField(string $skuValue)
+    public function getSkuField($skuValue)
     {
         $collection = $this->collectionFactory->create();
+        $arr = [];
 
         $collection
-            ->addAttributeToSelect('sku', 'name') // выбираем атрибуты товара
-            ->addFieldToFilter('sku',['like' => $skuValue.'%'])
-            ->setPageSize(6) // делаем выборку только 10 товаров
+            ->addAttributeToSelect(['sku', 'name', 'qty'])// выбираем атрибуты товара
+            ->addFieldToFilter('sku', ['like' => '%' . $skuValue . '%'])
+            ->setPageSize(5)// делаем выборку только N товаров
             ->setCurPage(1); //вывод первой страницы
 
-        $arr = [];
-        foreach ($collection as $product){
-            $arr[$product->getSku()] = $product->getName();
+        foreach ($collection as $product) {
+            $arr[$product->getSKU()] = $product->getName();
         }
-
         return $arr;
     }
 }

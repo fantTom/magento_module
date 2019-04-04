@@ -7,12 +7,12 @@ use Magento\Framework\Controller\ResultFactory;
 
 class Index extends \Magento\Framework\App\Action\Action
 {
-    protected  $resultPageFactory;
+    protected $resultPageFactory;
 
     public function __construct(
         Context $context,
         \Magento\Framework\View\Result\PageFactory $resultPageFactory
-    )  {
+    ) {
         $this->resultFactory = $resultPageFactory;
         parent::__construct($context);
     }

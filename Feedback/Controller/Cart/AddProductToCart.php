@@ -3,6 +3,7 @@
 namespace Ravkovich\Feedback\Controller\Cart;
 
 use Magento\Framework\App\Action\Context;
+use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\Exception\NoSuchEntityException;
 
 class AddProductToCart extends \Magento\Framework\App\Action\Action
@@ -23,8 +24,7 @@ class AddProductToCart extends \Magento\Framework\App\Action\Action
         \Magento\Framework\View\Result\PageFactory $resultPageFactory,
         \Magento\Checkout\Model\Cart $cart,
         \Magento\Catalog\Api\ProductRepositoryInterface $productRepository
-    )
-    {
+    ) {
         parent::__construct($context);
 
         $this->resultPageFactory = $resultPageFactory;
@@ -37,7 +37,7 @@ class AddProductToCart extends \Magento\Framework\App\Action\Action
         $sku = $this->getRequest()->getParam('sku');
         $qty = $this->getRequest()->getParam('qty');
 
-        if (!($sku && $qty)){
+        if (!($sku && $qty)) {
             return $this->_redirect($this->_redirect->getRefererUrl());
         }
 
@@ -52,7 +52,9 @@ class AddProductToCart extends \Magento\Framework\App\Action\Action
             $this->cart->save();
             $this->messageManager->addSuccessMessage(__('Товар добавлен!'));
         } catch (NoSuchEntityException $exception) {
-            $this->messageManager->addExceptionMessage($exception,__('Совпадений в базе не найдено!'));
+            $this->messageManager->addExceptionMessage($exception, __('Совпадений в базе не найдено!'));
+        } catch (LocalizedException $exception) {
+            $this->messageManager->addExceptionMessage($exception, __(''));
         } catch (\Exception $exception) {
             $this->messageManager->addExceptionMessage($exception, __(''));
         }
