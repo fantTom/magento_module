@@ -1,7 +1,7 @@
 <?php
 /** @var \Magento\Framework\View\Element\Template $block */
 ?>
-<form id="sku-form" method="post" action="<?= $block->getUrl('*/Cart/AddProductToCart') ?>">
+<form id="sku-form" method="post" action="<?= $block->getUrl('*/cart/addproducttocart') ?>">
 
     <div class="text_scu" style="width: 70%;  float: left;">
         <span class="label">Поле ввода SKU-кода:</span>
@@ -13,7 +13,41 @@
     </div>
     <button type="submit" class="btn_add" style="float: right; margin: 20px 10px 20px 0;" >Добавить</button>
 </form>
-<form enctype="multipart/form-data" method="post">
+<form type="multipart/form-data" method="post">
     <input type="file" name="download_file" style="margin: 20px 10px 20px 0;">
     <button type="submit" class="btn_download" style="margin: 20px 10px 20px 0;" >Добавить из файла</button>
 </form>
+
+
+<lable>Выберите любимого персонажа:
+<input list="character">
+    <datalist id="character">
+        <option value="Чебурашка">Name 1</option>
+        <option value="Крокодил Гена">Name 2</option>
+        <option value="Шапокляк">Name 3</option>
+    </datalist></lable>
+
+
+<script type="text/javascript">
+
+    $(document).ready(function($) {
+        $('#sku-form')
+            .keyup(function () {
+                var str1 = $(this).serialize();
+                $.ajax({
+                    type: "POST",
+                    url: '*/prod/autocomplete',
+                    data: str1,
+
+                    success: function (data) {
+                       //$('#success_message').fadeIn().html(data);
+                       // $('#form-for-login').style.display = 'none';
+                    },
+                });
+            });
+
+    });
+
+
+
+</script>

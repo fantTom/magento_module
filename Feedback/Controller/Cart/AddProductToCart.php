@@ -7,8 +7,10 @@ use Magento\Framework\Exception\NoSuchEntityException;
 
 class AddProductToCart extends \Magento\Framework\App\Action\Action
 {
-    protected $_resultPageFactory;
-    protected $cart;
+    /**
+     * @var \Magento\Checkout\Model\Cart
+     */
+    private $cart;
 
     /**
      * @var \Magento\Catalog\Api\ProductRepositoryInterface
@@ -35,21 +37,25 @@ class AddProductToCart extends \Magento\Framework\App\Action\Action
         $sku = $this->getRequest()->getParam('sku');
         $qty = $this->getRequest()->getParam('qty');
 
+        if (!($sku && $qty)){
+            return $this->_redirect($this->_redirect->getRefererUrl());
+        }
+
         try {
             $product = $this->productRepository->get($sku);
+
             $params = array(
                 'product' => $product->getId(),//product Id
                 'qty' => $qty                  //quantity of product
             );
             $this->cart->addProduct($product, $params);
             $this->cart->save();
+            $this->messageManager->addSuccessMessage(__('Товар добавлен!'));
         } catch (NoSuchEntityException $exception) {
             $this->messageManager->addExceptionMessage($exception,__('Совпадений в базе не найдено!'));
         } catch (\Exception $exception) {
             $this->messageManager->addExceptionMessage($exception, __(''));
         }
-
-
 
         return $this->_redirect($this->_redirect->getRefererUrl());
     }
