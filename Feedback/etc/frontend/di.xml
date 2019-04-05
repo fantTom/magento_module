@@ -11,4 +11,7 @@
             </argument>
         </arguments>
     </type>
+    <type name="Magento\Checkout\Controller\Cart\Add">
+        <plugin name="Ravkovich_Feedback_Plugin" type="Ravkovich\Feedback\Plugin\AddProductToCart" sortOrder="1" disabled="false" />
+    </type>
 </config>

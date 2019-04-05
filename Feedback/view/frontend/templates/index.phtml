@@ -1,17 +1,19 @@
 <?php
 /** @var \Magento\Framework\View\Element\Template $block */
 ?>
-<form id="sku-form" >
+<form  method="post" id="sku-form">
 
-    <div class="text_scu" style="width: 70%;  float: left;">
+    <?= $block->getBlockHtml('formkey') ?>
+
+    <div class="text-sku" style="width: 70%;  float: left;">
         <span class="label">Поле ввода SKU-кода:</span>
-        <input list="sku-list" type="text" id="sku" name="sku" autocomplete="no"/>
+        <input id="sku" name="sku" type="text" list="sku-list"/>
         <datalist id="sku-list" name="sku-list"></datalist>
     </div>
 
-    <div class="text_caut" style="width: 25%;  float: left; padding-left: 5%">
+    <div class="text-qty" style="width: 25%;  float: left; padding-left: 5%">
         <span class="label">Поле ввода количества единиц:</span>
-        <input type="text" id="qty" name="qty" value=""/>
+        <input id="qty" name="qty" type="text" />
     </div>
 
     <button type="submit" class="btn_add" style="float: right; margin: 20px 10px 20px 0;">Добавить</button>

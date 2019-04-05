@@ -54,9 +54,9 @@ class AddProductToCart extends \Magento\Framework\App\Action\Action
         } catch (NoSuchEntityException $exception) {
             $this->messageManager->addExceptionMessage($exception, __('Совпадений в базе не найдено!'));
         } catch (LocalizedException $exception) {
-            $this->messageManager->addExceptionMessage($exception, __(''));
+            $this->messageManager->addExceptionMessage($exception);
         } catch (\Exception $exception) {
-            $this->messageManager->addExceptionMessage($exception, __(''));
+            $this->messageManager->addExceptionMessage($exception);
         }
 
         return $this->_redirect($this->_redirect->getRefererUrl());
