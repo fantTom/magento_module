@@ -1,6 +1,5 @@
 require(['jquery'], function ($) {
     $(document).ready(function () {
-
         var xhr = null;
         $('#sku').keyup(function () {
             if (xhr) {
@@ -17,9 +16,9 @@ require(['jquery'], function ($) {
                 },
                 complete: function () {
                     xhr = null;
-                }
+                },
             });
 
-        })
+        });
     });
 });

@@ -1,18 +1,21 @@
 <?php
 /** @var \Magento\Framework\View\Element\Template $block */
 ?>
-<form id="sku-form" action="<?= $block->getUrl('*/cart/addproducttocart') ?>">
+<form id="sku-form" >
 
     <div class="text_scu" style="width: 70%;  float: left;">
         <span class="label">Поле ввода SKU-кода:</span>
         <input list="sku-list" type="text" id="sku" name="sku" autocomplete="no"/>
         <datalist id="sku-list" name="sku-list"></datalist>
     </div>
+
     <div class="text_caut" style="width: 25%;  float: left; padding-left: 5%">
         <span class="label">Поле ввода количества единиц:</span>
         <input type="text" id="qty" name="qty" value=""/>
     </div>
+
     <button type="submit" class="btn_add" style="float: right; margin: 20px 10px 20px 0;">Добавить</button>
+
 </form>
 <!--<form type="multipart/form-data" method="post">
     <input type="file" name="download_file" style="margin: 20px 10px 20px 0;">
