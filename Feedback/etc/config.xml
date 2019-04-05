@@ -8,5 +8,10 @@
                 <frontend_url>feedback</frontend_url>
             </general>
         </feedback>
+        <discounts>
+            <general>
+                <enable>0</enable>
+            </general>
+        </discounts>
     </default>
 </config>

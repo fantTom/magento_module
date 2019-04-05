@@ -5,23 +5,45 @@
         <tab id="amasty" translate="label" sortOrder="10">
             <label>Amasty</label>
         </tab>
-        <section id="feedback" translate="label" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+        <section id="feedback" translate="label" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
             <class>separator-top</class>
             <label>Feedback</label>
             <tab>amasty</tab>
             <resource>Ravkovich_Feedback::feedback_config</resource>
-            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0"
-                   showInStore="0">
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
                 <label>General Configuration</label>
-                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0"
-                       showInStore="0">
+                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
                     <label>Module Enable</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
-                <field id="frontend_url" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0"
-                       showInStore="0">
+                <field id="frontend_url" translate="label comment" type="text" sortOrder="1" showInDefault="1"
+                       showInWebsite="1"
+                       showInStore="1">
                     <label>Frontend URL</label>
                     <comment>This text will display on the frontend.</comment>
+                </field>
+            </group>
+        </section>
+        <section id="discounts" translate="label" sortOrder="200" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Discounts</label>
+            <tab>amasty</tab>
+            <resource>Ravkovich_Feedback::feedback_config</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <label>Wholesale buyer</label>
+                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Additional discounts</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="disct" translate="label" sortOrder="6" showInDefault="1" showInWebsite="0" showInStore="0"
+                       canRestore="1">
+                    <label>Minimum Qty Allowed in Shopping Cart</label>
+                    <frontend_model>Magento\CatalogInventory\Block\Adminhtml\Form\Field\Minsaleqty</frontend_model>
+                    <backend_model>Magento\CatalogInventory\Model\System\Config\Backend\Minsaleqty</backend_model>
                 </field>
             </group>
         </section>
