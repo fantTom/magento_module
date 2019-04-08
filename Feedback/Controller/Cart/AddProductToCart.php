@@ -45,6 +45,7 @@ class AddProductToCart extends \Magento\Framework\App\Action\Action
             $product = $this->productRepository->get($sku);
 
             $params = array(
+                'formkey' => $add->getRequest()->getParam('formkey'),
                 'product' => $product->getId(),//product Id
                 'qty' => $qty                  //quantity of product
             );

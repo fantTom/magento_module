@@ -22,6 +22,7 @@ class AddProductToCart
     {
         $product = $this->productRepository->get($add->getRequest()->getParam('sku'));
         $add->getRequest()->setParams([
+            //'formkey' => $add->getRequest()->getParam('formkey'),
             'product' => $product->getId(),
             'qty' => $add->getRequest()->getParam('qty'),
         ]);
