@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
     <default>
         <feedback>
             <general>
@@ -7,5 +8,10 @@
                 <frontend_url>feedback</frontend_url>
             </general>
         </feedback>
+        <discounts>
+            <general>
+                <enable>0</enable>
+            </general>
+        </discounts>
     </default>
 </config>
