@@ -12,5 +12,6 @@ require(["jquery", "mage/url"], function ($, urlBuilder) {
                 },
             });
         });
+
     });
 });

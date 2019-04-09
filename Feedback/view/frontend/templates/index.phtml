@@ -4,11 +4,10 @@
 <form  method="post" id="sku-form">
 
     <?= $block->getBlockHtml('formkey') ?>
-
+    <input type="hidden" name="addedfromamasty" value="1">
     <div class="text-sku" style="width: 70%;  float: left;">
         <span class="label">Поле ввода SKU-кода:</span>
         <input id="sku" name="sku" type="text" list="sku-list"/>
-        <input type="hidden" name="addedfromamasty" value="1">
         <datalist id="sku-list" name="sku-list"></datalist>
     </div>
 
@@ -17,11 +16,49 @@
         <input id="qty" name="qty" type="text" />
     </div>
 
-    <button type="submit" class="btn_add" style="float: right; margin: 20px 10px 20px 0;">Добавить</button>
+    <button type="submit" id="click-me" class="btn_add" style="float: right; margin: 20px 10px 20px 0;">Добавить</button>
 
 </form>
-<!--<form type="multipart/form-data" method="post">
-    <input type="file" name="download_file" style="margin: 20px 10px 20px 0;">
-    <button type="submit" class="btn_download" style="margin: 20px 10px 20px 0;">Добавить из файла</button>
-</form>
--->
+
+<div id="popup-modal" style="display:none;">
+    <?php
+    $productSkus = array('24-MB06','24-MB04');
+    foreach ($productSkus as $product){
+        echo $product . '<br>';
+    }
+
+    ?>
+</div>
+
+<script>
+    require(
+        [
+            'jquery',
+            'Magento_Ui/js/modal/modal'
+        ],
+        function(
+            $,
+            modal
+        ) {
+            var options = {
+                type: 'popup',
+                responsive: true,
+                innerScroll: true,
+                title: 'popup modal title',
+                buttons: [{
+                    text: $.mage.__('Continue'),
+                    class: '',
+                    click: function () {
+                        this.closeModal();
+                    }
+                }]
+            };
+
+            var popup = modal(options, $('#popup-modal'));
+            $("#click-me").on('click',function(){
+                $("#popup-modal").modal("openModal");
+            });
+
+        }
+    );
+</script>

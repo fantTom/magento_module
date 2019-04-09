@@ -10,8 +10,13 @@
         </feedback>
         <discounts>
             <general>
-                <enable>0</enable>
+                <enable>1</enable>
             </general>
         </discounts>
+        <stork>
+            <general>
+                <enable>1</enable>
+            </general>
+        </stork>
     </default>
 </config>

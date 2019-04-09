@@ -36,7 +36,7 @@
                 <label>Wholesale buyer</label>
                 <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1"
                        showInStore="1">
-                    <label>General Configuration</label>
+                    <label>Module Enable</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
                 <field id="disct" translate="label" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1"
@@ -47,6 +47,33 @@
                 </field>
             </group>
         </section>
+        <section id="stock" translate="label" sortOrder="300" showInDefault="1" showInWebsite="1" showInStore="1">
+        <class>separator-top</class>
+        <label>Stock</label>
+        <tab>amasty</tab>
+        <resource>Ravkovich_Feedback::feedback_config</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+            <label>Stock (product free)</label>
+                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Module Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="prod" translate="label" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1"
+                       canRestore="1">
+                    <label>Product SKU</label>
+                    <frontend_model>Ravkovich\Feedback\Block\Adminhtml\Form\Field\ProductList</frontend_model>
+                    <backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
+                </field>
+                <field id="stock_free" translate="label" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1"
+                       canRestore="1">
+                    <label>Stock SKU</label>
+                    <frontend_model>Ravkovich\Feedback\Block\Adminhtml\Form\Field\StockList</frontend_model>
+                    <backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
+                </field>
 
+            </group>
+        </section>
     </system>
 </config>

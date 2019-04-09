@@ -26,8 +26,9 @@ class Discount extends \Magento\Quote\Model\Quote\Address\Total\AbstractTotal
      * @var \Magento\Framework\Pricing\PriceCurrencyInterface
      */
     protected $priceCurrency;
-
-
+    /**
+     * @var \Magento\Framework\App\Config\ScopeConfigInterface
+     */
     protected $scopeConfig;
 
     /**
@@ -44,7 +45,6 @@ class Discount extends \Magento\Quote\Model\Quote\Address\Total\AbstractTotal
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
     )
     {
-        $this->setCode('testdiscount');
         $this->eventManager = $eventManager;
         $this->calculator = $validator;
         $this->storeManager = $storeManager;
@@ -70,7 +70,7 @@ class Discount extends \Magento\Quote\Model\Quote\Address\Total\AbstractTotal
         $appliedCartDiscount = $total->getDiscountAmount();
         $discount = - $this->getDiscouts($total);
         $total->setDiscountAmount($discount+$appliedCartDiscount);
-        $total->addTotalAmount($this->getCode(), $discount);
+        $total->addTotalAmount('testdiscount', $discount);
 
         return $this;
     }
