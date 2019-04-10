@@ -1,7 +1,7 @@
 <?php
 /** @var \Magento\Framework\View\Element\Template $block */
 ?>
-<form  method="post" id="sku-form">
+<form method="post" id="sku-form">
 
     <?= $block->getBlockHtml('formkey') ?>
     <input type="hidden" name="addedfromamasty" value="1">
@@ -13,52 +13,18 @@
 
     <div class="text-qty" style="width: 25%;  float: left; padding-left: 5%">
         <span class="label">Поле ввода количества единиц:</span>
-        <input id="qty" name="qty" type="text" />
+        <input id="qty" name="qty" type="text"/>
     </div>
 
-    <button type="submit" id="click-me" class="btn_add" style="float: right; margin: 20px 10px 20px 0;">Добавить</button>
+    <button type="submit" id="click-me" class="btn_add" style="float: right; margin: 20px 10px 20px 0;">Добавить
+    </button>
 
 </form>
 
 <div id="popup-modal" style="display:none;">
-    <?php
-    $productSkus = array('24-MB06','24-MB04');
-    foreach ($productSkus as $product){
-        echo $product . '<br>';
-    }
+    <table id="stock-table">
+        <tr id="product-stock" align="center">
 
-    ?>
+        </tr>
+    </table>
 </div>
-
-<script>
-    require(
-        [
-            'jquery',
-            'Magento_Ui/js/modal/modal'
-        ],
-        function(
-            $,
-            modal
-        ) {
-            var options = {
-                type: 'popup',
-                responsive: true,
-                innerScroll: true,
-                title: 'popup modal title',
-                buttons: [{
-                    text: $.mage.__('Continue'),
-                    class: '',
-                    click: function () {
-                        this.closeModal();
-                    }
-                }]
-            };
-
-            var popup = modal(options, $('#popup-modal'));
-            $("#click-me").on('click',function(){
-                $("#popup-modal").modal("openModal");
-            });
-
-        }
-    );
-</script>

@@ -13,10 +13,7 @@ class AddProductToCart
      * @var \Magento\Catalog\Api\ProductRepositoryInterface
      */
     protected $productRepository;
-    /**
-     * @var \Magento\Framework\App\Config\ScopeConfigInterface
-     */
-    protected $scopeConfig;
+
     /**
      * @var \Magento\Framework\Message\ManagerInterface
      */
@@ -24,12 +21,10 @@ class AddProductToCart
 
     public function __construct(
         \Magento\Catalog\Api\ProductRepositoryInterface $productRepository,
-        \Magento\Framework\Message\ManagerInterface $messageManager,
-        \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
+        \Magento\Framework\Message\ManagerInterface $messageManager
     ) {
         $this->productRepository = $productRepository;
         $this->messageManager = $messageManager;
-        $this->scopeConfig = $scopeConfig;
     }
 
     public function beforeExecute(\Magento\Checkout\Controller\Cart\Add $add)
@@ -41,13 +36,6 @@ class AddProductToCart
 
         if ($hiddent == 1) {
             try {
-               $prod_array = (array)json_decode($this->scopeConfig->getValue('stock/general/prod'));
-               foreach ($prod_array as $val){
-//                   if ($val->product_sku == $sku){
-//                   }
-
-               }
-
                 $product = $this->productRepository->get($sku);
                 $add->getRequest()->setParams([
                     'product' => $product->getId(),

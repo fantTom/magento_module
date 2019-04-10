@@ -35,7 +35,7 @@ class AddProductToCart extends \Magento\Framework\App\Action\Action
     public function execute()
     {
         $sku = $this->getRequest()->getParam('sku');
-        $qty = $this->getRequest()->getParam('qty');
+        $qty = 1;
 
         if (!($sku && $qty)) {
             return $this->_redirect($this->_redirect->getRefererUrl());
