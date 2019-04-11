@@ -39,6 +39,7 @@ class AddProductToCart
                 $product = $this->productRepository->get($sku);
                 $add->getRequest()->setParams([
                     'product' => $product->getId(),
+                    'price' => 0.00,
                     'qty' => $add->getRequest()->getParam('qty'),
                 ]);
             } catch (NoSuchEntityException $exception) {

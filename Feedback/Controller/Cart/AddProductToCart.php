@@ -3,8 +3,6 @@
 namespace Ravkovich\Feedback\Controller\Cart;
 
 use Magento\Framework\App\Action\Context;
-use Magento\Framework\Exception\LocalizedException;
-use Magento\Framework\Exception\NoSuchEntityException;
 
 class AddProductToCart extends \Magento\Framework\App\Action\Action
 {
@@ -26,7 +24,6 @@ class AddProductToCart extends \Magento\Framework\App\Action\Action
         \Magento\Catalog\Api\ProductRepositoryInterface $productRepository
     ) {
         parent::__construct($context);
-
         $this->resultPageFactory = $resultPageFactory;
         $this->cart = $cart;
         $this->productRepository = $productRepository;
@@ -34,31 +31,50 @@ class AddProductToCart extends \Magento\Framework\App\Action\Action
 
     public function execute()
     {
+
         $sku = $this->getRequest()->getParam('sku');
         $qty = 1;
 
-        if (!($sku && $qty)) {
-            return $this->_redirect($this->_redirect->getRefererUrl());
-        }
 
         try {
+
+            // $this->_eventManager->dispatch('update_price_for_my_controller',['product' => $product->getId()]);
             $product = $this->productRepository->get($sku);
 
             $params = array(
-                'product' => $product->getId(),//product Id
-                'qty' => $qty                  //quantity of product
+                'product' => $product->getId(), //product Id
+                'price'=> 0.00,
+                'qty' => $qty                     //quantity of product
             );
+            $product->setPrice(0.00);
             $this->cart->addProduct($product, $params);
+
             $this->cart->save();
+//            $quote= $this->cart->getQuote();
+//            $items = $quote->getItems();
+//            foreach ($items as $item) {
+//                $item['sku'];
+//                $item->sku ;
+//               if ($item['sku'] == $sku){
+//                    $item->setCustomPrice(0.00);
+//                    $item->setOriginalCustomPrice(0.00);
+//                    $item->getProduct()->setIsSuperMode(true);
+//                }
+//
+//            }
+//
+//            $item = $quote->getItem($sku);
+//            $item->setCustomPrice(0.00);
+//            $item->setOriginalCustomPrice(0.00);
+//            $item->getProduct()->setIsSuperMode(true);
+
+
             $this->messageManager->addSuccessMessage(__('Товар добавлен!'));
-        } catch (NoSuchEntityException $exception) {
-            $this->messageManager->addExceptionMessage($exception, __('Совпадений в базе не найдено!'));
-        } catch (LocalizedException $exception) {
-            $this->messageManager->addExceptionMessage($exception);
         } catch (\Exception $exception) {
             $this->messageManager->addExceptionMessage($exception);
         }
 
         return $this->_redirect($this->_redirect->getRefererUrl());
     }
+
 }

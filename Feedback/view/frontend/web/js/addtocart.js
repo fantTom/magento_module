@@ -1,4 +1,4 @@
-require(["jquery", "mage/url", 'Magento_Ui/js/modal/modal'], function ($, urlBuilder, modal) {
+require(["jquery", "mage/url", 'Magento_Ui/js/modal/modal', 'Magento_Customer/js/customer-data'], function ($, urlBuilder, modal, customerData) {
     $(document).ready(function () {
         var options = {
             type: 'popup',
@@ -41,6 +41,8 @@ require(["jquery", "mage/url", 'Magento_Ui/js/modal/modal'], function ($, urlBui
                                     data:"sku="+ $(this).attr('id'),
                                     success: function () {
                                         console.log('ok');
+                                        customerData.reload(['cart'], true);
+                                        $("#popup-modal").modal("closeModal");
                                     }
                                 });
                             });

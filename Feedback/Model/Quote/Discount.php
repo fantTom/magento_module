@@ -7,14 +7,10 @@ namespace Ravkovich\Feedback\Model\Quote;
 class Discount extends \Magento\Quote\Model\Quote\Address\Total\AbstractTotal
 {
     /**
-     * Discount calculation object
-     *
      * @var \Magento\SalesRule\Model\Validator
      */
     protected $calculator;
     /**
-     * Core event manager proxy
-     *
      * @var \Magento\Framework\Event\ManagerInterface
      */
     protected $eventManager = null;
@@ -43,8 +39,7 @@ class Discount extends \Magento\Quote\Model\Quote\Address\Total\AbstractTotal
         \Magento\SalesRule\Model\Validator $validator,
         \Magento\Framework\Pricing\PriceCurrencyInterface $priceCurrency,
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
-    )
-    {
+    ) {
         $this->eventManager = $eventManager;
         $this->calculator = $validator;
         $this->storeManager = $storeManager;
@@ -63,15 +58,12 @@ class Discount extends \Magento\Quote\Model\Quote\Address\Total\AbstractTotal
         \Magento\Quote\Model\Quote $quote,
         \Magento\Quote\Api\Data\ShippingAssignmentInterface $shippingAssignment,
         \Magento\Quote\Model\Quote\Address\Total $total
-    )
-    {
+    ) {
         parent::collect($quote, $shippingAssignment, $total);
-
         $appliedCartDiscount = $total->getDiscountAmount();
         $discount = - $this->getDiscouts($total);
         $total->setDiscountAmount($discount+$appliedCartDiscount);
         $total->addTotalAmount('testdiscount', $discount);
-
         return $this;
     }
 
